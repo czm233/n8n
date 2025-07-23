@@ -53,7 +53,7 @@ const options = computed(() => {
 		{
 			label: ssoStore.isEnterpriseOidcEnabled
 				? SupportedProtocols.OIDC.toUpperCase()
-				: `${SupportedProtocols.OIDC.toUpperCase()} (${i18n.baseText('generic.upgradeToEnterprise')})`,
+				: `${SupportedProtocols.OIDC.toUpperCase()}`,
 			value: SupportedProtocols.OIDC,
 		},
 	];
@@ -337,7 +337,7 @@ async function onOidcSettingsSave() {
 			</div>
 		</div>
 		<div v-if="authProtocol === SupportedProtocols.SAML">
-			<div v-if="ssoStore.isEnterpriseSamlEnabled" data-test-id="sso-content-licensed">
+			<div data-test-id="sso-content-licensed">
 				<div :class="$style.group">
 					<label>{{ i18n.baseText('settings.sso.settings.redirectUrl.label') }}</label>
 					<CopyInput
@@ -426,21 +426,9 @@ async function onOidcSettingsSave() {
 					{{ i18n.baseText('settings.sso.settings.footer.hint') }}
 				</footer>
 			</div>
-			<n8n-action-box
-				v-else
-				data-test-id="sso-content-unlicensed"
-				:class="$style.actionBox"
-				:description="i18n.baseText('settings.sso.actionBox.description')"
-				:button-text="i18n.baseText('settings.sso.actionBox.buttonText')"
-				@click:button="goToUpgrade"
-			>
-				<template #heading>
-					<span>{{ i18n.baseText('settings.sso.actionBox.title') }}</span>
-				</template>
-			</n8n-action-box>
 		</div>
 		<div v-if="authProtocol === SupportedProtocols.OIDC">
-			<div v-if="ssoStore.isEnterpriseOidcEnabled">
+			<div>
 				<div :class="$style.group">
 					<label>Redirect URL</label>
 					<CopyInput
@@ -506,17 +494,6 @@ async function onOidcSettingsSave() {
 					</n8n-button>
 				</div>
 			</div>
-			<n8n-action-box
-				v-else
-				data-test-id="sso-content-unlicensed"
-				:class="$style.actionBox"
-				:button-text="i18n.baseText('settings.sso.actionBox.buttonText')"
-				@click:button="goToUpgrade"
-			>
-				<template #heading>
-					<span>{{ i18n.baseText('settings.sso.actionBox.title') }}</span>
-				</template>
-			</n8n-action-box>
 		</div>
 	</div>
 </template>

@@ -24,7 +24,7 @@ const onSSOLogin = async () => {
 </script>
 
 <template>
-	<div v-if="ssoStore.showSsoLoginButton" :class="$style.ssoLogin">
+	<div :class="$style.ssoLogin">
 		<div :class="$style.divider">
 			<span>{{ i18n.baseText('sso.login.divider') }}</span>
 		</div>
